@@ -1,23 +1,23 @@
 name: CD-front-end
 on: 
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    deployment:
-        runs-on: ubuntu-latest
+  deployment:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-            - uses: actions/setup-node@v3
-              with:
-                node-version: "18"
+      - uses: actions/setup-node@v3
+        with:
+        node-version: "18"
 
-            - name: update-frontend-app
-              env: 
-                TOKEN: ${{ secrets.TOKEN }}
-            run: |
-                npm i -g @liara/cli@5
-                liara deploy --app="" --port=3000 --api-token="$TOKEN" --no-app-logs
+      - name: update-frontend-app
+        env: 
+        TOKEN: ${{ secrets.TOKEN }}
+      run: |
+        npm i -g @liara/cli@5
+        liara deploy --app="" --port=3000 --api-token="$TOKEN" --no-app-logs
